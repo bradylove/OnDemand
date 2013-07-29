@@ -11,7 +11,7 @@ Number.prototype.between = (min, max) ->
     document.addEventListener "mousemove", (event) ->
       that.onMouseMove(event)
 
-  addScript: (src) ->
+  addScriptTag: (src) ->
     script = document.createElement("script")
     script.type = "text/javascript"
     script.src  = src
@@ -21,13 +21,18 @@ Number.prototype.between = (min, max) ->
 
   onMouseMove: (event) ->
     for watch in @watches
-      if !watch.loaded
+      if !watch.inserted
         coords = @getElementCoords(watch.id)
 
         if (event.pageX).between(coords[0], coords[1]) &&
            (event.pageY).between(coords[2], coords[3])
-          @addScript(watch.src)
-          watch.loaded = true
+          @addScriptTag(watch.src)
+
+          watch.inserted = true
+
+          # Todo: trigger this after the script has actually loaded
+          #       not just added to the page
+          watch.onload()
 
   getElementCoords: (id) ->
     element = document.getElementById(id)
@@ -40,11 +45,13 @@ Number.prototype.between = (min, max) ->
 
     return [x, xx, y, yy]
 
-  addWatch: (id, src) ->
+  addWatch: (id, src, onload) ->
     newWatch =
       id: id
       src: src
-      loaded: false
+      inserted: false
+
+    newWatch.onload = onload if onload
 
     @watches.push newWatch
 
