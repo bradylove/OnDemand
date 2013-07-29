@@ -1,0 +1,15 @@
+#specialDiv-0, #specialDiv-1 {
+    width: 300px;
+    border: 1px solid #FF0000;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.mouse-near-buffer {
+/*     position: relative; */
+/*     top: -200px; */
+/*     left: -200px; */
+/*     bottom: -200px; */
+/*     right: -200px; */
+    border: 1px solid #37FF00;
+}
