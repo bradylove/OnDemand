@@ -10,7 +10,7 @@ like the following.
 
 ``` javascript
 document.addEventListener('DOMContentLoaded', function() {
-  OnDemand.init({ weight: 100 })
+  OnDemand.init({ weight: 100 });
 
   OnDemand.addWatch("div-id-1", "scripts/somefile0.js", function(){
     alert("scipts/somefile0.js has been added to the page");
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
   OnDemand.addWatch("div-id-2", "scripts/somefile1.js", function() {
     alert("scripts/somefile1.js has been aded to the page");
   });
-})
+});
 ```
 
 The weight that is passed in this example is optional, it defaults to 200.
